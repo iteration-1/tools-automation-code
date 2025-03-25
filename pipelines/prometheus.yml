@@ -16,5 +16,5 @@ pipelines:
           jobs:
             ansible:
               tasks:
-                - exec: {command: ansible-playbook,  arguments:["-i", "prometheus.pappik.online,", "tools.yml", "-e", "tool_name=prometheus", "-e", "ansible_user=ec2-user", "ansible_password=DevOps321"], run_if: passed}
+                - exec: {command: ansible-playbook,  arguments:["-i", "prometheus.pappik.online,", "tools.yml", "-e", "tool_name=prometheus", "-e", "ansible_user=ec2-user","-e", "ansible_password=DevOps321"], run_if: passed}
 
