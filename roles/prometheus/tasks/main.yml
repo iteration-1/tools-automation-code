@@ -1,0 +1,18 @@
+- name: Download prometheus
+  ansible.builtin.unarchive:
+    src: https://github.com/prometheus/prometheus/releases/download/{{ version }}/prometheus-{{ version }}.linux-amd64.tar.gz
+    dest: /opt
+    remote_src: yes
+    owner: bin
+
+- name: copy service file
+  ansible.builtin.template:
+    src: prometheus.service
+    dest: /etc/systemd/system/prometheus.service
+
+- name: STart prometheus service
+  ansible.builtin.systemd_service:
+    name: prometheus
+    state: restarted
+    daemon-reload: yes
+
