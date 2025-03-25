@@ -1,7 +1,7 @@
 format_version: 10
 pipelines:
   tools-tf-apply:
-    group: Tools
+    group: Terraform
     materials:
       git-2058dd3:
         git: https://github.com/iteration-1/tools-automation-code.git
