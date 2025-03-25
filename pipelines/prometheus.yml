@@ -1,7 +1,7 @@
 format_version: 10
 pipelines:
-  tools-tf-apply:
-    group: Terraform
+  prometheus:
+    group: Tools
     materials:
       git-2058dd3:
         git: https://github.com/iteration-1/tools-automation-code.git
@@ -9,13 +9,12 @@ pipelines:
         auto_update: true
         branch: main
     stages:
-      - APPLY:
+      - Ansible:
           fetch_materials: true
           approval:
             type: manual
           jobs:
-            ansible-playbook:
+            ansible:
               tasks:
-                - exec: {command: terraform,  arguments:["init"], run_if: passed}
-                - exec: {command: terraform,  arguments: [ "apply", "-auto-approve" ], run_if: passed }
+                - exec: {command: ansible-playbook,  arguments:["-i", "prometheus.pappik.online", "tools.yml", "-e", "tool_name=prometheus", "-e", "ansible_user=ec2-user", "ansible_password=DevOps321"], run_if: passed}
 
