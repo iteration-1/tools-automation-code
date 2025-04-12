@@ -8,7 +8,7 @@ resource "aws_instance" "ec2" {
   instance_market_options {
     market_type = "spot"
     spot_options {
-      instance_interruption_behaviour = "stop"
+      instance_interruption_behavior = "stop"
       spot_instance_type              = "persistent"
     }
   }
