@@ -6,7 +6,6 @@ resource "aws_instance" "ec2" {
 
   tags = {
     Name    = var.tool_name
-    Monitor = "yes"
   }
 }
 
