@@ -9,3 +9,4 @@ module "prometheus" {
   zone_id       = var.zone_id
 
 }
+
