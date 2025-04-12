@@ -2,6 +2,7 @@ resource "aws_instance" "ec2" {
   ami                    = data.aws_ami.ec2.id
   instance_type          = var.instance_type
   vpc_security_group_ids = [data.aws_security_group.selected.id]
+  iam_instance_profile = aws_iam_instance_profile.instance_profile.name
 
   tags = {
     Name = var.tool_name
@@ -33,6 +34,22 @@ resource "aws_iam_role" "role" {
       },
     ]
   })
+
+  inline_policy {
+    name = "${var.tool_name}-policy_resource_list"
+
+    policy = jsonencode({
+      Version = "2012-10-17"
+      Statement = [
+        {
+          Action   = var.policy_resource_list
+          Effect   = "Allow"
+          Resource = "*"
+        },
+      ]
+    })
+  }
+
 
   tags = {
     Name = "${var.tool_name}-role"
