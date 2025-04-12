@@ -2,10 +2,11 @@ resource "aws_instance" "ec2" {
   ami                    = data.aws_ami.ec2.id
   instance_type          = var.instance_type
   vpc_security_group_ids = [data.aws_security_group.selected.id]
-  iam_instance_profile = aws_iam_instance_profile.instance_profile.name
+  iam_instance_profile   = aws_iam_instance_profile.instance_profile.name
 
   tags = {
-    Name = var.tool_name
+    Name    = var.tool_name
+    Monitor = "yes"
   }
 }
 
